@@ -1,0 +1,19 @@
+<launch>
+
+ <node pkg="second_project" type="tf_publisher" name="tf_publisher"/>
+
+ <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_laser" args="0.18 0 0.04 0 -0.043486 0 0.999054 base_link laser"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_velodyne" args="0.18 0 0.17 0 -0.043486 0 0.999054 base_link velodyne"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_footprint_to_base_link" args="0 0 0 0 0 0 1 base_footprint base_link"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_base_footprint" args="-0.25 0 -0.29 0 0.043486 0 0.043486 t265 base_footprint"/>
+
+
+<!--      <param name="use_sim_time" value="true"/> -->
+
+<node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
+      <rosparam command="load" file="$(find second_project)/config/slam_toolbox_2D_laser_config.yaml" />
+   </node>
+
+   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find second_project)/config/config_mapping.rviz"/>
+
+</launch>

@@ -1,0 +1,7 @@
+image: map_laser_second_bag.pgm
+resolution: 0.100000
+origin: [-8.860200, -6.380548, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+
